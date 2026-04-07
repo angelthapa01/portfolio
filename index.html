@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Angel Thapa</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Angel</div>
+</nav>
+
+<!-- CLOCKS -->
+<div class="clocks">
+  <div>
+    <p class="label">Local</p>
+    <p id="localTime"></p>
+  </div>
+  <div class="divider"></div>
+  <div>
+    <p class="label">Nepal</p>
+    <p id="nepalTime"></p>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Angel Thapa</h1>
+    <p class="subtitle">
+      Passionate about technology, communication, and real-world impact.
+    </p>
+
+    <div class="actions">
+      <a href="#contact" class="btn">Contact</a>
+      <a href="#" class="btn ghost">LinkedIn</a>
+<a href="angelcv.pdf" download class="btn">Download CV</a>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section class="resume">
+  <h2>Resume</h2>
+
+  <iframe src="angelcv.pdf" class="resume-frame"></iframe>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <h2>Contact</h2>
+
+  <form id="contactForm">
+    <input type="text" id="cName" placeholder="Name" required />
+    <input type="email" id="cEmail" placeholder="Email" required />
+    <textarea id="cMsg" placeholder="Message" required></textarea>
+    <button type="submit" class="btn">Send</button>
+  </form>
+
+  <p id="formMsg"></p>
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
