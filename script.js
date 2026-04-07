@@ -1,80 +1,95 @@
-// THEME AUTO SWITCH
+// =======================
+// THEME (AUTO LIGHT/DARK)
+// =======================
 function setTheme() {
-  let hour = new Date().getHours();
+  var hour = new Date().getHours();
+
   if (hour >= 6 && hour < 18) {
-    document.body.classList.remove("dark");
+    document.body.style.background = "#f5f5f5";
+    document.body.style.color = "#111";
   } else {
-    document.body.classList.add("dark");
+    document.body.style.background = "#0f1115";
+    document.body.style.color = "#e6e6e6";
   }
 }
 
 setTheme();
 setInterval(setTheme, 60000);
 
-function setThemeByTime() {
-  const hour = new Date().getHours();
 
-  if (hour >= 6 && hour < 18) {
-    document.body.style.background = "#ffffff";
-    document.body.style.color = "#000000";
-  } else {
-    document.body.style.background = "#000000";
-    document.body.style.color = "#ffffff";
-  }
-}
+// =======================
+// CLOCKS (LOCAL + NEPAL)
+// =======================
 function updateClocks() {
-  const now = new Date();
+  var now = new Date();
 
   // Local time
-  document.getElementById("localTime").textContent =
-    now.toLocaleTimeString();
-
-  // Nepal time
-  const nepalTime = new Date(
-    now.toLocaleString("en-US", { timeZone: "Asia/Kathmandu" })
-  );
-
-  document.getElementById("nepalTime").textContent =
-    nepalTime.toLocaleTimeString();
-}
-
-setInterval(updateClocks, 1000);
-updateClocks();
-
-setThemeByTime();
-setInterval(setThemeByTime, 60000);
-// CLOCKS
-function updateClocks() {
-  let now = new Date();
-
-  let hh = String(now.getHours()).padStart(2, "0");
-  let mm = String(now.getMinutes()).padStart(2, "0");
-  let ss = String(now.getSeconds()).padStart(2, "0");
+  var hh = String(now.getHours()).padStart(2, "0");
+  var mm = String(now.getMinutes()).padStart(2, "0");
+  var ss = String(now.getSeconds()).padStart(2, "0");
 
   document.getElementById("localTime").textContent = `${hh}:${mm}:${ss}`;
 
-  let utc = now.getTime() + now.getTimezoneOffset() * 60000;
-  let nepal = new Date(utc + (5.75 * 3600000));
+  // Nepal time (UTC + 5:45)
+  var utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  var nepal = new Date(utc + 20700000);
 
-  let nh = String(nepal.getHours()).padStart(2, "0");
-  let nm = String(nepal.getMinutes()).padStart(2, "0");
-  let ns = String(nepal.getSeconds()).padStart(2, "0");
-
-  document.getElementById("nepalTime").textContent = `${nh}:${nm}:${ns}`;
+  document.getElementById("nepalTime").textContent =
+    nepal.toTimeString().split(" ")[0];
 }
 
 updateClocks();
 setInterval(updateClocks, 1000);
 
 
-// CONTACT FORM (mailto fallback)
+// =======================
+// GALLERY (CLICK TO EXPAND)
+// =======================
+document.addEventListener("DOMContentLoaded", () => {
+  const images = document.querySelectorAll(".gallery-scroll img");
+
+  images.forEach(img => {
+    img.addEventListener("click", () => {
+
+      // Create overlay
+      const overlay = document.createElement("div");
+      overlay.className = "overlay";
+
+      // Large image
+      const bigImg = document.createElement("img");
+      bigImg.src = img.src;
+
+      // Description
+      const desc = document.createElement("p");
+      desc.textContent = img.getAttribute("data-desc") || "";
+
+      // Append elements
+      overlay.appendChild(bigImg);
+      overlay.appendChild(desc);
+      document.body.appendChild(overlay);
+
+      // Close on click
+      overlay.addEventListener("click", () => {
+        overlay.remove();
+      });
+
+    });
+  });
+});
+
+
+// =======================
+// CONTACT FORM (MAILTO)
+// =======================
 document.getElementById("contactForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  // clear form
-  document.getElementById("contactForm").reset();
+  var name = document.getElementById("cName").value;
+  var email = document.getElementById("cEmail").value;
+  var msg = document.getElementById("cMsg").value;
 
-  // show message
-  document.getElementById("formMsg").textContent = 
-    "Thank you, Angel will respond shortly <3";
+  window.location.href =
+    `mailto:angelthapa4141@gmail.com?subject=Message from ${name}&body=${msg}`;
+
+  document.getElementById("formMsg").textContent = "Opening email...";
 });

@@ -1,4 +1,6 @@
-/* RESET */
+/* =======================
+   RESET
+======================= */
 * {
   margin: 0;
   padding: 0;
@@ -6,171 +8,234 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* BODY */
-body {
-  color: #fff;
-  background: #000;
+/* =======================
+   THEME VARIABLES
+======================= */
+:root {
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --text: #111111;
+  --subtext: #666;
+  --border: #e5e7eb;
+  --accent: #6c63ff;
 }
 
-/* HERO SECTION */
+body.dark {
+  --bg: #0c0e13;
+  --card: #151922;
+  --text: #e6e6e6;
+  --subtext: #888;
+  --border: #2a2f3a;
+  --accent: #7c72ff;
+}
+
+/* =======================
+   BASE
+======================= */
+body {
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: 0.3s ease;
+}
+
+/* =======================
+   GLOBAL
+======================= */
+section {
+  padding: 110px 20px;
+  text-align: center;
+}
+
+/* =======================
+   NAV
+======================= */
+nav {
+  position: fixed;
+  width: 100%;
+  padding: 20px 40px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+/* =======================
+   HERO
+======================= */
 .hero {
   height: 100vh;
-  background: url("bg.jpg") center center / cover no-repeat;
-  position: relative;
-}
-.resume {
-  padding: 80px 20px;
-  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
 
-.resume-frame {
-  width: 90%;
-  height: 600px;
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(255,0,0,0.2);
-}
-/* DARK OVERLAY */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.25); /* lighter */
-}
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(2px);
-}
-
-/* CONTENT */
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  color: white;
-}
-
-/* TEXT */
 .hero h1 {
-  font-size: 3rem;
+  font-size: 3.2rem;
   font-weight: 600;
 }
 
 .subtitle {
-  margin-top: 10px;
-  font-size: 1rem;
-  color: #d1d1d6;
+  color: var(--subtext);
+  margin: 18px 0 30px;
 }
 
-/* BUTTONS */
+/* =======================
+   BUTTONS
+======================= */
 .actions {
-  margin-top: 30px;
   display: flex;
-  gap: 12px;
+  gap: 14px;
+  justify-content: center;
 }
 
 .btn {
-  padding: 10px 22px;
-  background: #ff1a1a;
+  padding: 12px 26px;
+  border-radius: 10px;
+  background: var(--accent);
   color: white;
-  border-radius: 999px;
   text-decoration: none;
   font-size: 0.9rem;
+  border: none;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* =======================
+   GALLERY
+======================= */
+.gallery h2 {
+  margin-bottom: 20px;
+}
+
+.gallery-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.gallery-scroll img {
+  height: 160px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  cursor: pointer;
   transition: 0.3s;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
 }
 
-.btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
-}
-
-
-.btn:hover {
+.gallery-scroll img:hover {
   transform: scale(1.05);
 }
 
-.btn.ghost {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.4);
+/* =======================
+   OVERLAY
+======================= */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  z-index: 999;
 }
 
-/* CLOCKS */
+.overlay img {
+  max-width: 85%;
+  max-height: 70%;
+  border-radius: 12px;
+}
+
+.overlay p {
+  color: #ccc;
+}
+
+/* =======================
+   RESUME
+======================= */
+.resume-frame {
+  width: 90%;
+  height: 520px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+/* =======================
+   CONTACT
+======================= */
+.contact h2 {
+  margin-bottom: 25px;
+}
+
+form {
+  max-width: 420px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+input, textarea {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  transition: 0.2s;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--subtext);
+}
+
+input:focus, textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+/* =======================
+   CLOCK (VISIBLE ALWAYS)
+======================= */
 .clocks {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: rgba(0,0,0,0.7);
-  padding: 10px 14px;
-  border-radius: 10px;
+
+  background: var(--card);
+  border: 1px solid var(--border);
+
+  padding: 12px 16px;
+  border-radius: 12px;
+
   display: flex;
   gap: 12px;
-  font-size: 0.8rem;
+
+  font-size: 0.75rem;
+  color: var(--text);
+}
+
+.label {
+  font-size: 0.65rem;
+  color: var(--subtext);
 }
 
 .divider {
   width: 1px;
-  background: #444;
-}
-
-.label {
-  font-size: 0.6rem;
-  color: #aaa;
-}
-
-/* CONTACT SECTION */
-.contact {
-  padding: 100px 20px;
-  text-align: center;
-  background: #111;
-}
-
-form {
-  max-width: 400px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-input, textarea {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #333;
-  background: #1a1a1a;
-  color: white;
-}
-
-textarea {
-  height: 100px;
-}
-
-#formMsg {
-  margin-top: 15px;
-  color: #4caf50;
-  font-size: 0.9rem;
-}
-
-/* BACKGROUND ANIMATION */
-@keyframes zoomBg {
-  from {
-    background-size: 100%;
-  }
-  to {
-    background-size: 110%;
-  }
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .subtitle {
-    font-size: 0.9rem;
-  }
+  background: var(--border);
 }
