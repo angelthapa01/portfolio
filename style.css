@@ -20,6 +20,46 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
+.decor {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #f9a8d4, transparent);
+  opacity: 0.4;
+  filter: blur(10px);
+  animation: float 6s ease-in-out infinite;
+}
+
+.decor1 { top: 20%; left: 10%; }
+.decor2 { top: 60%; right: 15%; animation-delay: 2s; }
+.decor3 { bottom: 10%; left: 40%; animation-delay: 4s; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.4), transparent);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.btn:hover::after {
+  opacity: 1;
+}
+.avatar:hover {
+  transform: scale(1.05) rotate(1deg);
+  transition: 0.3s;
+}
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
@@ -356,4 +396,70 @@ body {
   .hero h1 { font-size: 2.4rem; }
   .section { padding: 90px 16px; }
   .nav { padding: 16px 20px; }
+}
+/* =======================
+   ACHIEVEMENTS SECTION
+======================= */
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.achievement-card {
+  padding: 22px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #ffffff, #fff1f7);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(236, 72, 153, 0.08);
+  transition: all 0.25s ease;
+  text-align: left;
+}
+
+.achievement-card h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: var(--accent);
+}
+
+.achievement-card p {
+  font-size: 0.85rem;
+  color: var(--subtext);
+}
+
+.achievement-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(236, 72, 153, 0.18);
+}
+
+/* =======================
+   EXTRA WHIMSICAL TOUCH
+======================= */
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(236,72,153,0.15), transparent 40%),
+              radial-gradient(circle at 80% 70%, rgba(236,72,153,0.1), transparent 40%);
+  z-index: 1;
+}
+
+.section {
+  position: relative;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(236,72,153,0.15), transparent);
+  filter: blur(30px);
+  top: 20%;
+  left: 10%;
+  z-index: 0;
 }
