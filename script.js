@@ -1,6 +1,4 @@
-// =======================
-// THEME (AUTO LIGHT/DARK)
-// =======================
+
 function setTheme() {
   var hour = new Date().getHours();
 
@@ -17,9 +15,7 @@ setTheme();
 setInterval(setTheme, 60000);
 
 
-// =======================
-// CLOCKS (LOCAL + NEPAL)
-// =======================
+
 function updateClocks() {
   var now = new Date();
 
@@ -42,9 +38,7 @@ updateClocks();
 setInterval(updateClocks, 1000);
 
 
-// =======================
-// GALLERY (CLICK TO EXPAND)
-// =======================
+
 document.addEventListener("DOMContentLoaded", () => {
   const images = document.querySelectorAll(".gallery-scroll img");
 
@@ -78,9 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// =======================
-// CONTACT FORM (MAILTO)
-// =======================
+
 document.getElementById("contactForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
